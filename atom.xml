@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://miaojihui.github.io/"/>
-  <updated>2016-06-14T15:45:04.000Z</updated>
+  <updated>2016-06-24T14:49:24.000Z</updated>
   <id>https://miaojihui.github.io/</id>
   
   <author>
@@ -14,6 +14,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>My First Post</title>
+    <link href="https://miaojihui.github.io/2016/06/15/firstone/"/>
+    <id>https://miaojihui.github.io/2016/06/15/firstone/</id>
+    <published>2016-06-15T15:01:55.000Z</published>
+    <updated>2016-06-24T14:49:24.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;My-first-post&quot;&gt;&lt;a href=&quot;#My-first-post&quot; class=&quot;headerlink&quot; title=&quot;My first post&quot;&gt;&lt;/a&gt;My first post&lt;/h1&gt;&lt;h2 id=&quot;还在学习如何使用md编写博客-明天争取写一篇文章来记录下如何使用hexo写博客并部署到github&quot;&gt;&lt;a href=&quot;#还在学习如何使用md编写博客-明天争取写一篇文章来记录下如何使用hexo写博客并部署到github&quot; class=&quot;headerlink&quot; title=&quot;还在学习如何使用md编写博客,明天争取写一篇文章来记录下如何使用hexo写博客并部署到github&quot;&gt;&lt;/a&gt;还在学习如何使用md编写博客,明天争取写一篇文章来记录下如何使用hexo写博客并部署到github&lt;/h2&gt;&lt;h2 id=&quot;To-be-continued&quot;&gt;&lt;a href=&quot;#To-be-continued&quot; class=&quot;headerlink&quot; title=&quot;To be continued!&quot;&gt;&lt;/a&gt;To be continued!&lt;/h2&gt;&lt;h2 id=&quot;Test&quot;&gt;&lt;a href=&quot;#Test&quot; class=&quot;headerlink&quot; title=&quot;Test&quot;&gt;&lt;/a&gt;Test&lt;/h2&gt;&lt;h3 id=&quot;helloworld&quot;&gt;&lt;a href=&quot;#helloworld&quot; class=&quot;headerlink&quot; title=&quot;helloworld&quot;&gt;&lt;/a&gt;helloworld&lt;/h3&gt;&lt;table&gt;&lt;br&gt;    &lt;tr&gt;&lt;br&gt;        &lt;td&gt;row 0 col 0&lt;/td&gt;&lt;br&gt;        &lt;td&gt;row 0 col 1&lt;/td&gt;&lt;br&gt;    &lt;/tr&gt;&lt;br&gt;    &lt;tr&gt;&lt;br&gt;         &lt;td&gt;row 1 col 0&lt;/td&gt;&lt;br&gt;         &lt;td&gt;row 1 col 1&lt;/td&gt;&lt;br&gt;    &lt;/tr&gt;&lt;br&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;/p&gt;&lt;p&gt;这是p标签&lt;/p&gt;    &lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;h1&gt;h1&lt;/h1&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;h2&gt;h2&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;h3&gt;h3&lt;/h3&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;h4&gt;h4&lt;/h4&gt;&lt;br&gt;&lt;a href=&quot;http://www.baidu.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;www.baidu.com&lt;/a&gt;&lt;p&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,&lt;br&gt;consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.&lt;br&gt;Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.&lt;/p&gt;
+&lt;p&gt;Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse&lt;br&gt;id sem consectetuer libero luctus adipiscing.&lt;/p&gt;
+&lt;p&gt;return shell_exec(“echo $input | $markdown_script”);&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit.&lt;br&gt;Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,&lt;br&gt;viverra nec, fringilla in, laoreet vitae, risus.&lt;/li&gt;
+&lt;li&gt;Donec sit amet nisl. Aliquam semper ipsum sit amet velit.&lt;br&gt;Suspendisse id sem consectetuer libero luctus adipiscing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;apple&lt;/li&gt;
+&lt;li&gt;banana&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;orange&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;这是一个代码区块。
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;this is &lt;a href=&quot;http://www.baidu.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;baidu&lt;/a&gt;;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var a = 0;
+var b = helloworld;
+console.log(a);
+console.log(b);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;em&gt;em&lt;/em&gt;&lt;br&gt;&lt;em&gt;strong&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Use &lt;code&gt;code&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;console.log(“helloworld”);&lt;/code&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;My-first-post&quot;&gt;&lt;a href=&quot;#My-first-post&quot; class=&quot;headerlink&quot; title=&quot;My first post&quot;&gt;&lt;/a&gt;My first post&lt;/h1&gt;&lt;h2 id=&quot;还在学习如何使用md编写博客-明天争取写一
+    
+    </summary>
+    
+    
+      <category term="firstpost" scheme="https://miaojihui.github.io/tags/firstpost/"/>
+    
+      <category term="workhard" scheme="https://miaojihui.github.io/tags/workhard/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
