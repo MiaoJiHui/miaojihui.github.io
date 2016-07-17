@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> bootstrap-tagsinput · MiaoJiHui</title><meta name="description" content="bootstrap-tagsinput - Joseph Miao"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/m.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/xly.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/miaojihui" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">bootstrap-tagsinput</h1><div class="post-info">Jul 17, 2016</div><div class="post-content"><h2 id="公司最近在做一个有关tagsinput的东西，折腾了我好久，特此记录下"><a href="#公司最近在做一个有关tagsinput的东西，折腾了我好久，特此记录下" class="headerlink" title="公司最近在做一个有关tagsinput的东西，折腾了我好久，特此记录下"></a>公司最近在做一个有关tagsinput的东西，折腾了我好久，特此记录下</h2><p>bootstrap-tagsinput 其实是分两步：一个是tagsinput 另一个是typeahead</p>
+<p>1.首先先下载bootstrap-tagsinput到本地，这是它的github地址：<a href="https://github.com/bootstrap-tagsinput/bootstrap-tagsinput" target="_blank" rel="external">https://github.com/bootstrap-tagsinput/bootstrap-tagsinput</a><br>目录结构如下：<br><img src="/imgs/tagsinput.png" alt="Alt tagsinput"><br>我没有全部引用这些文件，我就用到了<br>bootstrap-tagsinput.css  —这是tag的样式<br>bootstrap-tagsinput-typeahead.css  —这是typeahead的样式</p>
+<p>bootstrap-tagsinput.min.js </p>
+<p>2.然后下载typeaheads.js,这是<a href="https://github.com/twitter/typeahead.js" target="_blank" rel="external">typeahead</a>的github地址<br>目录结构如下：</p>
+<p><div style="text-align:left;"><img style="display:inline-block;" src="/imgs/typeahead.png"></div><br>这里只要用到typeahead-bundle.js就行了，它已经包括了其他的js库了</p>
+<p>3.把如上文件依次引入到html之后，接下来就是写input标签了</p>
+<pre><code>&lt;input type=&quot;text&quot; id=&quot;tag_search&quot; data-provide=&quot;typeahead&quot; class=&quot;form-control&quot;
+  value=&quot;Amsterdam,Washington&quot; /&gt;
+</code></pre><p>4.然后是js了</p>
+<pre><code>//这里的cache:false 可能会有让服务器压力增大的隐患
+    var citynames = new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace(&apos;name&apos;),
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      prefetch: {
+        url: &apos;{:U(&quot;index/tags&quot;)}&apos;,
+        filter: function(list) {
+          return $.map(list, function(cityname) {
+            return { name: cityname }; });
+        },
+        cache:false
+      }
+
+    });
+
+    console.log(citynames.prefetch)
+    $(&apos;#tag_search&apos;).tagsinput({
+      typeaheadjs: {
+        name: &apos;citynames&apos;,
+        displayKey: &apos;name&apos;,
+        valueKey: &apos;name&apos;,
+        source: citynames.ttAdapter()
+      }
+    });
+</code></pre><p>index/tags下就是返回的json数据如下：</p>
+<pre><code>[ &quot;Amsterdam&quot;,
+  &quot;London&quot;,
+  &quot;Paris&quot;,
+  &quot;Washington&quot;,
+  &quot;New York&quot;,
+  &quot;Los Angeles&quot;,
+  &quot;Sydney&quot;,
+  &quot;Melbourne&quot;,
+  &quot;Canberra&quot;,
+  &quot;Beijing&quot;,
+  &quot;New Delhi&quot;,
+  &quot;Kathmandu&quot;,
+  &quot;Cairo&quot;,
+  &quot;Cape Town&quot;,
+  &quot;Kinshasa&quot;
+]
+</code></pre><p>一开始我并没有加cache:false的时候，我发现就算我改了url中的json数据，还是无法及时加载。所以我就在控制台打印了<code>citynames.prefetch</code>,如下图：<br><img src="/imgs/prefetch.png"><br>上图是我改过cache之后的截图了，默认的是cache:true。我尝试改成了false，问题就暂时解决啦。<br>但是，这隐隐让我觉得当tags越来越多时，可能会对服务器造成一定压力，因为每次请求它都要去加载那串url得到json数据，不过我暂时也想不出其他方法，就只能先这样了。<br>等研究出别的更好的方法了我再来更新。<br>其实prefetch的意思应该是预加载，原来的url也是本地环境中的.json文件，所以它的本意应该是用来加载本地与定义的tag数据的。</p>
+<p>我看网上还有如下这种实现方式：</p>
+<pre><code>$(&apos;input&apos;).tagsinput({
+  typeahead: {                  
+    source: function(query) {
+      return $.get(&apos;{:(&quot;index/tags&quot;)}&apos;);
+    }
+  }
+});
+</code></pre><p>但是我怎么试都不行<br>Oops…能力有限，先这样..</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/06/30/hexo/" class="next">下一篇</a></div><div class="copyright"><p>© 2016 <a href="https://miaojihui.github.io">Joseph Miao</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
