@@ -47,7 +47,7 @@
     <link href="https://miaojihui.github.io/2016/07/17/bootstrap-tagsinput/"/>
     <id>https://miaojihui.github.io/2016/07/17/bootstrap-tagsinput/</id>
     <published>2016-07-17T08:05:06.000Z</published>
-    <updated>2016-07-17T13:22:22.000Z</updated>
+    <updated>2016-08-07T14:12:32.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;公司最近在做一个有关tagsinput的东西，折腾了我好久，特此记录下&quot;&gt;&lt;a href=&quot;#公司最近在做一个有关tagsinput的东西，折腾了我好久，特此记录下&quot; class=&quot;headerlink&quot; title=&quot;公司最近在做一个有关tagsinput的东西，折腾了我好久，特此记录下&quot;&gt;&lt;/a&gt;公司最近在做一个有关tagsinput的东西，折腾了我好久，特此记录下&lt;/h2&gt;&lt;p&gt;bootstrap-tagsinput 其实是分两步：一个是tagsinput 另一个是typeahead&lt;/p&gt;
 &lt;p&gt;1.首先先下载bootstrap-tagsinput到本地，这是它的github地址：&lt;a href=&quot;https://github.com/bootstrap-tagsinput/bootstrap-tagsinput&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/bootstrap-tagsinput/bootstrap-tagsinput&lt;/a&gt;&lt;br&gt;目录结构如下：&lt;br&gt;&lt;img src=&quot;/imgs/tagsinput.png&quot; alt=&quot;Alt tagsinput&quot;&gt;&lt;br&gt;我没有全部引用这些文件，我就用到了&lt;br&gt;bootstrap-tagsinput.css  —这是tag的样式&lt;br&gt;bootstrap-tagsinput-typeahead.css  —这是typeahead的样式&lt;/p&gt;
@@ -55,60 +55,14 @@
 &lt;p&gt;2.然后下载typeaheads.js,这是&lt;a href=&quot;https://github.com/twitter/typeahead.js&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;typeahead&lt;/a&gt;的github地址&lt;br&gt;目录结构如下：&lt;/p&gt;
 &lt;p&gt;&lt;div style=&quot;text-align:left;&quot;&gt;&lt;img style=&quot;display:inline-block;&quot; src=&quot;/imgs/typeahead.png&quot;&gt;&lt;/div&gt;&lt;br&gt;这里只要用到typeahead-bundle.js就行了，它已经包括了其他的js库了&lt;/p&gt;
 &lt;p&gt;3.把如上文件依次引入到html之后，接下来就是写input标签了&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot; id=&amp;quot;tag_search&amp;quot; data-provide=&amp;quot;typeahead&amp;quot; class=&amp;quot;form-control&amp;quot;
-  value=&amp;quot;Amsterdam,Washington&amp;quot; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;4.然后是js了&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//这里的cache:false 可能会有让服务器压力增大的隐患
-    var citynames = new Bloodhound({
-      datumTokenizer: Bloodhound.tokenizers.obj.whitespace(&amp;apos;name&amp;apos;),
-      queryTokenizer: Bloodhound.tokenizers.whitespace,
-      prefetch: {
-        url: &amp;apos;{:U(&amp;quot;index/tags&amp;quot;)}&amp;apos;,
-        filter: function(list) {
-          return $.map(list, function(cityname) {
-            return { name: cityname }; });
-        },
-        cache:false
-      }
-
-    });
-
-    console.log(citynames.prefetch)
-    $(&amp;apos;#tag_search&amp;apos;).tagsinput({
-      typeaheadjs: {
-        name: &amp;apos;citynames&amp;apos;,
-        displayKey: &amp;apos;name&amp;apos;,
-        valueKey: &amp;apos;name&amp;apos;,
-        source: citynames.ttAdapter()
-      }
-    });
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;index/tags下就是返回的json数据如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[ &amp;quot;Amsterdam&amp;quot;,
-  &amp;quot;London&amp;quot;,
-  &amp;quot;Paris&amp;quot;,
-  &amp;quot;Washington&amp;quot;,
-  &amp;quot;New York&amp;quot;,
-  &amp;quot;Los Angeles&amp;quot;,
-  &amp;quot;Sydney&amp;quot;,
-  &amp;quot;Melbourne&amp;quot;,
-  &amp;quot;Canberra&amp;quot;,
-  &amp;quot;Beijing&amp;quot;,
-  &amp;quot;New Delhi&amp;quot;,
-  &amp;quot;Kathmandu&amp;quot;,
-  &amp;quot;Cairo&amp;quot;,
-  &amp;quot;Cape Town&amp;quot;,
-  &amp;quot;Kinshasa&amp;quot;
-]
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一开始我并没有加cache:false的时候，我发现就算我改了url中的json数据，还是无法及时加载。所以我就在控制台打印了&lt;code&gt;citynames.prefetch&lt;/code&gt;,如下图：&lt;br&gt;&lt;img src=&quot;/imgs/prefetch.png&quot;&gt;&lt;br&gt;上图是我改过cache之后的截图了，默认的是cache:true。我尝试改成了false，问题就暂时解决啦。&lt;br&gt;但是，这隐隐让我觉得当tags越来越多时，可能会对服务器造成一定压力，因为每次请求它都要去加载那串url得到json数据，不过我暂时也想不出其他方法，就只能先这样了。&lt;br&gt;等研究出别的更好的方法了我再来更新。&lt;br&gt;其实prefetch的意思应该是预加载，原来的url也是本地环境中的.json文件，所以它的本意应该是用来加载本地与定义的tag数据的。&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;id&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;tag_search&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;data-provide&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;typeahead&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;form-control&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;attr&quot;&gt;value&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;Amsterdam,Washington&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;4.然后是js了&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//这里的cache:false 可能会有让服务器压力增大的隐患&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; citynames = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Bloodhound(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace(&lt;span class=&quot;string&quot;&gt;&#39;name&#39;&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	  queryTokenizer: Bloodhound.tokenizers.whitespace,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	  prefetch: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    url: &lt;span class=&quot;string&quot;&gt;&#39;&amp;#123;:U(&quot;index/tags&quot;)&amp;#125;&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    filter: &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;list&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	      &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; $.map(list, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;cityname&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &amp;#123; name: cityname &amp;#125;; &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    cache:&lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(citynames.prefetch)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	$(&lt;span class=&quot;string&quot;&gt;&#39;#tag_search&#39;&lt;/span&gt;).tagsinput(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	  typeaheadjs: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    name: &lt;span class=&quot;string&quot;&gt;&#39;citynames&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    displayKey: &lt;span class=&quot;string&quot;&gt;&#39;name&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    valueKey: &lt;span class=&quot;string&quot;&gt;&#39;name&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    source: citynames.ttAdapter()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;{:U(“index/tags”)}这串url对应的是php代码如下：&lt;br&gt;&lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   $m = M(&lt;span class=&quot;string&quot;&gt;&#39;article_tag&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;comment&quot;&gt;//从数据表获取整列tag数据，默认就是数组&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   $aTags = $m-&amp;gt;getField(&lt;span class=&quot;string&quot;&gt;&#39;tagname&#39;&lt;/span&gt;,&lt;span class=&quot;keyword&quot;&gt;true&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;echo&lt;/span&gt; json_encode($aTags);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// &amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;一开始我并没有加cache:false的时候，我发现就算我改了url中的json数据，还是无法及时加载。所以我就在控制台打印了&lt;code&gt;citynames.prefetch&lt;/code&gt;,如下图：&lt;br&gt;&lt;img src=&quot;/imgs/prefetch.png&quot;&gt;&lt;br&gt;上图是我改过cache之后的截图了，默认的是cache:true。我尝试改成了false，问题就暂时解决啦。&lt;br&gt;但是，这隐隐让我觉得当tags越来越多时，可能会对服务器造成一定压力，因为每次请求它都要去加载那串url得到json数据，不过我暂时也想不出其他方法，就只能先这样了。&lt;br&gt;等研究出别的更好的方法了我再来更新。&lt;br&gt;其实prefetch的意思应该是预加载，原来的url也是本地环境中的.json文件，所以它的本意应该是用来加载本地与定义的tag数据的。&lt;/p&gt;
 &lt;p&gt;我看网上还有如下这种实现方式：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$(&amp;apos;input&amp;apos;).tagsinput({
-  typeahead: {                  
-    source: function(query) {
-      return $.get(&amp;apos;{:(&amp;quot;index/tags&amp;quot;)}&amp;apos;);
-    }
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但是我怎么试都不行&lt;br&gt;Oops…能力有限，先这样..&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$(&lt;span class=&quot;string&quot;&gt;&#39;input&#39;&lt;/span&gt;).tagsinput(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  typeahead: &amp;#123;                  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    source: &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;query&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; $.get(&lt;span class=&quot;string&quot;&gt;&#39;&amp;#123;:(&quot;index/tags&quot;)&amp;#125;&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;但是我怎么试都不行,等有时间了再研究下&lt;br&gt;Oops…目前精力有限，先这样..&lt;/p&gt;
 </content>
     
     <summary type="html">
