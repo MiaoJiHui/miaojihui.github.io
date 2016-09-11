@@ -1,39 +1,38 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Mac下hexo的使用 · MiaoJiHui</title><meta name="description" content="Mac下hexo的使用 - Joseph Miao"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/xly.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/xly.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/miaojihui" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Mac下hexo的使用</h1><div class="post-info">Jun 30, 2016</div><div class="post-content"><h1 id="已经拖了好久了，终于下定决心想把自己怎么使用hexo更新博客的过程记录下来，自勉"><a href="#已经拖了好久了，终于下定决心想把自己怎么使用hexo更新博客的过程记录下来，自勉" class="headerlink" title=" 已经拖了好久了，终于下定决心想把自己怎么使用hexo更新博客的过程记录下来，自勉"></a> 已经拖了好久了，终于下定决心想把自己怎么使用hexo更新博客的过程记录下来，自勉</h1><p>首先你得了解如下技术和技能：</p>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> hexo＋github制作个人博客 · MiaoJiHui</title><meta name="description" content="hexo＋github制作个人博客 - Joseph Miao"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/xly.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/xly.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/miaojihui" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="https://twitter.com/miaojihui93" target="_blank" class="nav-list-link">TWITTER</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">hexo＋github制作个人博客</h1><div class="post-info">Jun 30, 2016</div><div class="post-content"><h2 id="已经拖了好久了，终于下定决心想把自己怎么使用hexo-github更新博客的过程记录下来"><a href="#已经拖了好久了，终于下定决心想把自己怎么使用hexo-github更新博客的过程记录下来" class="headerlink" title="已经拖了好久了，终于下定决心想把自己怎么使用hexo+github更新博客的过程记录下来"></a>已经拖了好久了，终于下定决心想把自己怎么使用hexo+github更新博客的过程记录下来</h2><p>首先你得了解如下技术和技能：</p>
 <ul>
-<li>npm<br>–node package management node包管理，具体可以百度，总之是开发神器</li>
-<li>hexo<br>–这是一款开源的博客模板引擎，我就是用的它生成的这个博客，与之对应的还有jekyll等</li>
-<li>git<br>–开源的分布式版本控制系统，可以方便的在本地/服务器更新和提交代码，比较小巧高效灵活</li>
+<li>npm<br>–node package management 是node的包管理器，可以用npm命令安装各种互联网的资源如js库</li>
+<li>hexo<br>–这是一款用node.js开发的开源博客模板引擎，我就是用的它生成的这个博客，与之对应的还有jekyll等</li>
+<li>git<br>–这是由linux之父linus大神花两周时间开发出的开源分布式版本控制系统，小巧高效灵活</li>
 <li>markdown<br>–按我的理解就是一种文本输入方式，就是我现在更新博客的一种编辑方式，这是<a href="http://wowubuntu.com/markdown/basic.html" title="markdown" target="_blank" rel="external">参考文档</a></li>
-<li>github<br>–这是广大程序员的代码分享之地，可以托管自己的代码也可以fork他人的代码，还可以建一个简单的github博客等等</li>
+<li>github<br>–这是广大程序员的代码分享之地（全球最大同性交友平台），可以托管/分享自己的代码也可以fork他人的代码，还可以利用它的github page功能建一个简单的github博客等等</li>
 </ul>
 <h3 id="好了现在正式叙述下过程"><a href="#好了现在正式叙述下过程" class="headerlink" title="好了现在正式叙述下过程"></a>好了现在正式叙述下过程</h3><ol>
-<li><strong> 安装npm，在这之前必须安装node.js,去<a href="http://nodejs.cn/" target="_blank" rel="external">官网</a>下载node并安装，安装完node会自动安装好npm</strong></li>
-<li><p><strong> 安装hexo，并初始化</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br><span class="line">$ hexo init blog  //这里的blog是你新建的文件夹，名字自取</span><br><span class="line">$ <span class="built_in">cd</span> blog</span><br><span class="line">$ npm install</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>此时你可以打开<a href="http://localhost:4000" target="_blank" rel="external">localhost:4000</a>，查看本地hexo博客主页有没有初始化成功，能打开网页即成功了。</p>
+<li><p><strong> 安装npm，在这之前必须安装node.js,去<a href="http://nodejs.cn/" target="_blank" rel="external">官网</a>下载node并安装，安装完node会自动安装好npm, 可用<code>bash node -v</code>和<code>npm -v</code>查看是否正确安装</strong> </p>
 </li>
-<li><p><strong> 更换hexo主题，美化博客</strong><br>去官网的<a href="https://hexo.io/themes/" target="_blank" rel="external">theme</a>页面寻找你喜欢的主题，然后下载下来，根据该主题的操作说明一一安装需要的包。都用npm安装好了之后执行下面操作：</p>
+<li><p><strong> 直接用npm安装hexo，并初始化</strong><br>初始化好的目录结构如下：<br><img src="http://i2.buimg.com/567571/164515166ed00245.jpg" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g		// -g是指全局安装</span><br><span class="line">$ hexo init myblog  </span><br><span class="line">$ <span class="built_in">cd</span> blog</span><br><span class="line">$ npm install		// 安装package.json里的js包</span><br><span class="line">$ hexo server		// 这里hexo已用browsersync实现了浏览器自动刷新，不必手刷</span><br></pre></td></tr></table></figure>
+<p>此时你可以打开<a href="http://localhost:4000" target="_blank" rel="external">localhost:4000</a>，查看本地hexo博客主页有没有初始化成功。<br>下图是hexo默认的博客主页：<br><img src="http://i2.buimg.com/567571/92e681f1d6b088df.jpg" class="pic-100"></p>
+</li>
+<li><p><strong> 更换hexo主题，美化博客</strong><br>去官网的<a href="https://hexo.io/themes/" target="_blank" rel="external">theme</a>页面寻找你喜欢的主题，然后下载下来，根据该主题的操作说明一一安装需要的包。以我用的apollo主题为例，需要先下载该主题依赖的一些包:<br><code>npm install --save hexo-renderer-jade hexo-generator-feed hexo-generator-sitemap hexo-browsersync hexo-generator-archive</code>然后再把该主题文件clone到themes文件夹下<br>同时修改 _config.yml 的 theme 配置项为 apollo。好了之后执行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 <p>如果报错的话，一般是这个主题所需要的包你没有安装完全。如果没报错就执行如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>这个时候就可以继续打开<a href="http://localhost:4000" target="_blank" rel="external">localhost:4000</a>查看新主题有没有安装成功了。</p>
+<p>这个时候就可以继续打开<a href="http://localhost:4000" target="_blank" rel="external">localhost:4000</a>查看新主题有没有安装成功了。<br>我这博客使用的是<a href="http://pinggod.com/" target="_blank" rel="external">apollo主题</a>,比较喜欢简洁风格的。</p>
 </li>
-<li><p><strong> 配置github</strong></p>
+<li><p><strong> 配置github,建立关联</strong></p>
 <ol>
-<li><strong> github申请一个repository</strong><br>去个人的github页，create new repository，库的名字写{username}.github.io，这里的username就是你的github账号名。建好之后再激活一下github pages,这个得去repository的setting里设。此时成功之后，你就可以通过 <a href="http://username.github.io" target="_blank" rel="external">http://username.github.io</a> 访问你的个人页了，当然这只是github给你提供的简单的展示页面，要想做成博客就必须用到hexo等这些静态博客引擎。</li>
-<li><strong> github添加ssh key</strong><br>这步是可选的，具体请百度。添加了ssh key之后你不用每次更新博客都要输入用户名和密码。</li>
-<li><p><strong> 和本地hexo建立关联</strong><br>这一步是最主要的，就是用本地hexo代码代替github个人页中username.github.io中的代码。所以我们先把username.github.io项目clone到本地</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/MiaoJiHui/miaojihui.github.io.git blog</span><br></pre></td></tr></table></figure>
-<p>然后在你blog文件下找到_config.yml，修改如下：</p>
+<li><strong> github申请一个repository</strong><br>去个人的github页，create new repository，库的名字必须写{username}.github.io，这里的username就是你的github账号名。建好之后再激活一下github pages,这个得去repository的setting里设。此时成功之后，你就可以通过 <a href="http://username.github.io" target="_blank" rel="external">http://username.github.io</a> 访问你的个人页了，当然这只是github给你提供的简单的展示页面，要想做成博客就必须用到hexo等这些静态博客引擎。</li>
+<li><strong> github添加ssh key</strong><br>可以看<a href="http://blog.csdn.net/binyao02123202/article/details/20130891" target="_blank" rel="external">这个</a>，具体也可百度。</li>
+<li><p><strong> 和本地hexo建立关联</strong><br>这一步是最主要的，就是用本地hexo代码代替github个人页中username.github.io中的代码。<br>再次找到_config.yml，修改如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: https://github.com/MiaoJiHui/mia</span><br><span class="line">ojihui.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
-<p>还有其他参数也要相应改掉，比如theme改成你当前用的主题名。<br>改好之后执行命令：$ npm install hexo-deployer-git –save</p>
+<p>还有其他参数也要相应改掉，比如theme改成你当前用的主题名。<br>改好之后执行命令：<code>$ npm install hexo-deployer-git --save</code>        //下载hexo下的git工具包</p>
 </li>
 </ol>
 </li>
 <li><p><strong> hexo命令</strong></p>
 <p>然后再执行:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>如果不报错的话，此时就已经部署成功了，你可以通过<a href="https://miaojihui.github" target="_blank" rel="external">https://miaojihui.github</a>.io的方式访问你的个人博客啦，祝君好运。</p>
+<p>如果不报错的话，此时就已经部署成功了，你可以通过<a href="https://miaojihui.github" target="_blank" rel="external">https://miaojihui.github</a>.io的方式访问你的个人博客啦，第一次成功的时候还是非常兴奋的！</p>
 </li>
 </ol>
 <ul>
@@ -47,6 +46,6 @@
 <p>  hexo version #查看Hexo的版本</p>
 </li>
 </ul>
-<p><em>一般来说，我都是在本地blog文件夹下执行hexo generate和hexo server命令，然后再用markdown更新博客，可以实时看到效果。编辑好了之后就用hexo generate和hexo deploy命令生成并部署到github上，上面这些命令还可以用hexo s这种省略的方式。非常方便。当然还是需要熟练markdown的使用。在此感谢markdown/hexo作者和github。</em></p>
+<p><em>一般来说，我都是在本地blog文件夹下执行hexo server命令，然后再用markdown更新编写博客，可以实时看到效果。编辑好了之后就用hexo generate和hexo deploy命令生成并部署到github上。总之，熟悉了markdown语法后，更新博客来说还是蛮方便的。在此感谢markdown/hexo作者和github。</em></p>
 <p>参考：<a href="http://www.jianshu.com/p/465830080ea9" target="_blank" rel="external">http://www.jianshu.com/p/465830080ea9</a></p>
 </div></article></div></section><footer><div class="paginator"><a href="/2016/07/17/bootstrap-tagsinput/" class="prev">PREV</a></div><div class="copyright"><p>© 2016 <a href="https://miaojihui.github.io">Joseph Miao</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
