@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://miaojihui.github.io/"/>
-  <updated>2016-09-18T15:23:45.000Z</updated>
+  <updated>2016-09-18T15:30:18.000Z</updated>
   <id>https://miaojihui.github.io/</id>
   
   <author>
@@ -20,19 +20,19 @@
     <link href="https://miaojihui.github.io/2016/09/18/mactools/"/>
     <id>https://miaojihui.github.io/2016/09/18/mactools/</id>
     <published>2016-09-18T15:12:31.000Z</published>
-    <updated>2016-09-18T15:23:45.000Z</updated>
+    <updated>2016-09-18T15:30:18.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;标题可能有些大，不过我会持续更新的…&quot;&gt;&lt;a href=&quot;#标题可能有些大，不过我会持续更新的…&quot; class=&quot;headerlink&quot; title=&quot;标题可能有些大，不过我会持续更新的…&quot;&gt;&lt;/a&gt;标题可能有些大，不过我会持续更新的…&lt;/h2&gt;&lt;h4 id=&quot;1-Alfred&quot;&gt;&lt;a href=&quot;#1-Alfred&quot; class=&quot;headerlink&quot; title=&quot;1. Alfred&quot;&gt;&lt;/a&gt;1. Alfred&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;查字典：&lt;br&gt;&lt;img src=&quot;http://i4.piimg.com/567571/6f02a1d1740b6e15.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
 &lt;li&gt;自定义搜索：&lt;br&gt;&lt;img src=&quot;http://i4.piimg.com/567571/cc373f14444034c4.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;br&gt;这里的gh是我自定义的keyword，需要自己去Feature-&amp;gt;WebSearch-&amp;gt;Add Custom Search里去添加,如下图所示：&lt;br&gt;&lt;img src=&quot;http://i4.piimg.com/567571/b2ff14839ef1cae2.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;/li&gt;
 &lt;li&gt;锁屏&amp;amp;睡眠&amp;amp;关机etc.&lt;br&gt;分别敲入的是&lt;code&gt;lock&lt;/code&gt;, &lt;code&gt;sleep&lt;/code&gt;, &lt;code&gt;shutdown&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;直接敲命令，并进入terminal，这里的&lt;code&gt;$&lt;/code&gt;我另外设置过了，默认是&lt;code&gt;^&lt;/code&gt;&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/122693bf3a0f24fb.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;/li&gt;
+&lt;li&gt;直接敲命令，并进入terminal，这里的&lt;code&gt;$&lt;/code&gt;我另外设置过了，默认是&lt;code&gt;&amp;gt;&lt;/code&gt;&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/122693bf3a0f24fb.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;/li&gt;
 &lt;li&gt;查找文件或文件夹先键入一个空格，再打文件/夹名即可&lt;/li&gt;
 &lt;li&gt;与Dash的强力结合，（dash是离线文档查看神器，后面还会再介绍）&lt;br&gt;&lt;img src=&quot;http://i2.buimg.com/567571/7980da5dcf131857.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;/li&gt;
 &lt;li&gt;还有很多功能另待挖掘…&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;2-Dash&quot;&gt;&lt;a href=&quot;#2-Dash&quot; class=&quot;headerlink&quot; title=&quot;2. Dash&quot;&gt;&lt;/a&gt;2. Dash&lt;/h4&gt;&lt;p&gt;dash是开发必备良品啊，无论在线或离线都能方便查询各文档，我觉得配合alfred使用最佳！&lt;br&gt;&lt;img src=&quot;http://7xrn7f.com1.z0.glb.clouddn.com/16-9-18/62590367.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;/p&gt;
-&lt;h4 id=&quot;3-iTerm2&quot;&gt;&lt;a href=&quot;#3-iTerm2&quot; class=&quot;headerlink&quot; title=&quot;3. iTerm2&quot;&gt;&lt;/a&gt;3. iTerm2&lt;/h4&gt;&lt;p&gt;iterm2可以说是terminal的增强版，可以较为自由的diy比如修改颜色主题，查找文件高亮等.&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/74311666jw1f7y4ohdh4pj21f00oatdz.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;br&gt;颜色主题可以在这里找到自己喜欢的&lt;a href=&quot;https://github.com/mbadolato/iTerm2-Color-Schemes&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iTerm2-Color-Theme&lt;/a&gt;&lt;br&gt;,下载好之后，如上图，在Profiles中新建profile name之后，在Colors-&amp;gt;Color presets中点击import你选中的主题&lt;br&gt;这是我自己的iterm2主题，比较喜欢这种柔和的颜色搭配：&lt;br&gt;&lt;img src=&quot;http://i4.piimg.com/567571/8238606fd1643009.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;3-iTerm2&quot;&gt;&lt;a href=&quot;#3-iTerm2&quot; class=&quot;headerlink&quot; title=&quot;3. iTerm2&quot;&gt;&lt;/a&gt;3. iTerm2&lt;/h4&gt;&lt;p&gt;iterm2可以说是terminal的增强版，可以较为自由的diy比如修改颜色主题，查找文件高亮等.&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/74311666jw1f7y4ohdh4pj21f00oatdz.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;br&gt;颜色主题可以在这里找到自己喜欢的&lt;a href=&quot;https://github.com/mbadolato/iTerm2-Color-Schemes&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iTerm2-Color-Theme&lt;/a&gt;&lt;br&gt;,下载好之后，如上图，在Profiles中新建profile name之后，在Colors-&amp;gt;Color presets中点击import你选中的主题&lt;br&gt;这是我自己的iterm2主题Blazer，比较喜欢这种柔和的颜色搭配：&lt;br&gt;&lt;img src=&quot;http://i4.piimg.com/567571/8238606fd1643009.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;/p&gt;
 &lt;h4 id=&quot;4-Sublime-Text3&quot;&gt;&lt;a href=&quot;#4-Sublime-Text3&quot; class=&quot;headerlink&quot; title=&quot;4. Sublime Text3&quot;&gt;&lt;/a&gt;4. Sublime Text3&lt;/h4&gt;&lt;p&gt;这个就不多描述啦，前端开发必备编辑器。&lt;br&gt;介绍个主题：&lt;a href=&quot;https://github.com/kkga/spacegray&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Spacegrey&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/128d1ccfe19ca00c.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;/p&gt;
 &lt;h4 id=&quot;5-MacDown&quot;&gt;&lt;a href=&quot;#5-MacDown&quot; class=&quot;headerlink&quot; title=&quot;5. MacDown&quot;&gt;&lt;/a&gt;5. MacDown&lt;/h4&gt;&lt;p&gt;markdown 编辑器，方便快捷。&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/c6de04a518769303.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;To-be-continued…&quot;&gt;&lt;a href=&quot;#To-be-continued…&quot; class=&quot;headerlink&quot; title=&quot;To be continued…&quot;&gt;&lt;/a&gt;To be continued…&lt;/h2&gt;</content>
