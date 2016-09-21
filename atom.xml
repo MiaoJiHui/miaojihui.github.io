@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://miaojihui.github.io/"/>
-  <updated>2016-09-18T15:30:18.000Z</updated>
+  <updated>2016-09-21T12:38:49.000Z</updated>
   <id>https://miaojihui.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://miaojihui.github.io/2016/09/18/mactools/"/>
     <id>https://miaojihui.github.io/2016/09/18/mactools/</id>
     <published>2016-09-18T15:12:31.000Z</published>
-    <updated>2016-09-18T15:30:18.000Z</updated>
+    <updated>2016-09-21T12:38:49.000Z</updated>
     
     <content type="html">&lt;h2 id=&quot;标题可能有些大，不过我会持续更新的…&quot;&gt;&lt;a href=&quot;#标题可能有些大，不过我会持续更新的…&quot; class=&quot;headerlink&quot; title=&quot;标题可能有些大，不过我会持续更新的…&quot;&gt;&lt;/a&gt;标题可能有些大，不过我会持续更新的…&lt;/h2&gt;&lt;h4 id=&quot;1-Alfred&quot;&gt;&lt;a href=&quot;#1-Alfred&quot; class=&quot;headerlink&quot; title=&quot;1. Alfred&quot;&gt;&lt;/a&gt;1. Alfred&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;查字典：&lt;br&gt;&lt;img src=&quot;http://i4.piimg.com/567571/6f02a1d1740b6e15.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
@@ -35,6 +35,7 @@
 &lt;h4 id=&quot;3-iTerm2&quot;&gt;&lt;a href=&quot;#3-iTerm2&quot; class=&quot;headerlink&quot; title=&quot;3. iTerm2&quot;&gt;&lt;/a&gt;3. iTerm2&lt;/h4&gt;&lt;p&gt;iterm2可以说是terminal的增强版，可以较为自由的diy比如修改颜色主题，查找文件高亮等.&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/74311666jw1f7y4ohdh4pj21f00oatdz.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;br&gt;颜色主题可以在这里找到自己喜欢的&lt;a href=&quot;https://github.com/mbadolato/iTerm2-Color-Schemes&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iTerm2-Color-Theme&lt;/a&gt;&lt;br&gt;,下载好之后，如上图，在Profiles中新建profile name之后，在Colors-&amp;gt;Color presets中点击import你选中的主题&lt;br&gt;这是我自己的iterm2主题Blazer，比较喜欢这种柔和的颜色搭配：&lt;br&gt;&lt;img src=&quot;http://i4.piimg.com/567571/8238606fd1643009.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;/p&gt;
 &lt;h4 id=&quot;4-Sublime-Text3&quot;&gt;&lt;a href=&quot;#4-Sublime-Text3&quot; class=&quot;headerlink&quot; title=&quot;4. Sublime Text3&quot;&gt;&lt;/a&gt;4. Sublime Text3&lt;/h4&gt;&lt;p&gt;这个就不多描述啦，前端开发必备编辑器。&lt;br&gt;介绍个主题：&lt;a href=&quot;https://github.com/kkga/spacegray&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Spacegrey&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/128d1ccfe19ca00c.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;/p&gt;
 &lt;h4 id=&quot;5-MacDown&quot;&gt;&lt;a href=&quot;#5-MacDown&quot; class=&quot;headerlink&quot; title=&quot;5. MacDown&quot;&gt;&lt;/a&gt;5. MacDown&lt;/h4&gt;&lt;p&gt;markdown 编辑器，方便快捷。&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/c6de04a518769303.jpg&quot; alt=&quot;Alt description&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;5-SmartSvn&quot;&gt;&lt;a href=&quot;#5-SmartSvn&quot; class=&quot;headerlink&quot; title=&quot;5. SmartSvn&quot;&gt;&lt;/a&gt;5. SmartSvn&lt;/h4&gt;&lt;p&gt;之前一直用的是Versions，经常会卡死崩溃，每次只能强关再开，很是烦恼。最近公司正好配了台新的mac mini，看知乎上说 SmartSvn好用我就试了试，结果真心好，比Versions强大很多。&lt;br&gt;分别贴下两者的截图：&lt;br&gt;Version:&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/ec72ff48aa298ec9.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;SmartSVN:&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/fd7bc80e1c15e52a.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;总之：SmartSVN给出了文件对比，需提交的文件统一放到右边的面板中一目了然，界面也比较清爽。&lt;/p&gt;
 &lt;h2 id=&quot;To-be-continued…&quot;&gt;&lt;a href=&quot;#To-be-continued…&quot; class=&quot;headerlink&quot; title=&quot;To be continued…&quot;&gt;&lt;/a&gt;To be continued…&lt;/h2&gt;</content>
     
     <summary type="html">
