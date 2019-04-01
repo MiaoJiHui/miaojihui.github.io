@@ -2,99 +2,16 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 因为setTimeout是异步函数，所以会延后执行。循环会先走完，所以i是10</span></span><br><span class="line"><span class="comment">// var中的i其实是全局的,所以console.log打印的是最后变成10的全局变量</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">     setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">     &#125;, <span class="number">1000</span>)</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">// A方法中的i，每一次循环都是let下的一个块作用域变量，能够记住i并保存到内存中</span></span><br><span class="line"> <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">     setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">     &#125;, <span class="number">1000</span>)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Object-keys-和Reflect-ownKeys-的区别"><a href="#Object-keys-和Reflect-ownKeys-的区别" class="headerlink" title="Object.keys()和Reflect.ownKeys()的区别"></a>Object.keys()和Reflect.ownKeys()的区别</h3><p><code>Object.keys()</code> 返回自己的可枚举属性</p>
 <p><code>Reflect.ownKeys()</code> 返回所有的自己属性，不管可枚举还是不可枚举，所以可以遍历出方法属性</p>
-<h3 id="实现一个浅拷贝"><a href="#实现一个浅拷贝" class="headerlink" title="实现一个浅拷贝"></a>实现一个浅拷贝</h3><pre><code>// 浅拷贝
-function shallowCopy(obj) {
-    var copyObj = {}
-    for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-            copyObj[key] = obj[key];
-        }
-    }
-    return copyObj;
-}
-</code></pre><h3 id="实现一个简易深拷贝"><a href="#实现一个简易深拷贝" class="headerlink" title="实现一个简易深拷贝"></a>实现一个简易深拷贝</h3><pre><code>// 判断是否为对象，保留是数组的情况。typeof [] === &apos;object&apos;
-function isObject(obj) {
-    return typeof obj === &apos;object&apos; &amp;&amp; object != null;
-}
-// 简易深拷贝
-function deepCopy(obj) {
-    // 如果非对象则返回该值
-    if (!isObject(obj)) return obj;
-    var copyObj = Array.isArray(obj) ? [] : {};
-    for (var key in obj) {
-        if (isObject(obj[key]) {
-            // 递归
-            copyObj[key] = deepCopy(obj[key]);
-        } else {
-            copyObj[key] = obj[key];
-        }
-    }
-    return copyObj;
-}
-</code></pre><h3 id="lodash常用方法"><a href="#lodash常用方法" class="headerlink" title="lodash常用方法"></a>lodash常用方法</h3><pre><code>// 过滤数组
-_.uniq([1, 1, 2, 3]); // [1, 2, 3]
-_.uniqBy([{ age: 10 }, { age: 11 }, { age: 10 }], &apos;age&apos;);
-// =&gt; [{ age: 10 }, { age: 11 }]
-_.uniqBy([{ name: &apos;joe&apos;, age: &apos;10&apos;}, { name: &apos;tome&apos;, age: &apos;11&apos;}, { name: &apos;joe&apos;, age: &apos;10&apos;}], _.isEqual);
-// =&gt; [{ name: &apos;joe&apos;, age: &apos;10&apos;}, { name: &apos;tome&apos;, age: &apos;11&apos;}]
-
-// 获取随机数
-_.random(0, 10)
-
-// 深度比较，非内存地址比较
-_.isEqual({ a:1 }, { a:1 });    // true
-
-_.isNil()   // null or undefined
-
-_.cloneDeep()   // 深拷贝
-_.clone()   // 浅拷贝
-
-_.find()    // 找到数组中符合条件的对象
-
-_.flatten()     // 数组扁平化，降维一层
-_.flattenDeep()     // 数组扁平化至一维  
-</code></pre><h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><pre><code>var arr = [1,2,3,3,3,3,4,5,5];
+<h3 id="实现一个浅拷贝"><a href="#实现一个浅拷贝" class="headerlink" title="实现一个浅拷贝"></a>实现一个浅拷贝</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 浅拷贝</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shallowCopy</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> copyObj = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.hasOwnProperty.call(obj, key)) &#123;</span><br><span class="line">            copyObj[key] = obj[key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> copyObj;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="实现一个简易深拷贝"><a href="#实现一个简易深拷贝" class="headerlink" title="实现一个简易深拷贝"></a>实现一个简易深拷贝</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断是否为对象，保留是数组的情况。typeof [] === 'object'</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isObject</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> obj === <span class="string">'object'</span> &amp;&amp; object != <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 简易深拷贝</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 如果非对象则返回该值</span></span><br><span class="line">    <span class="keyword">if</span> (!isObject(obj)) <span class="keyword">return</span> obj;</span><br><span class="line">    <span class="keyword">var</span> copyObj = <span class="built_in">Array</span>.isArray(obj) ? [] : &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">        <span class="keyword">if</span> (isObject(obj[key]) &#123;</span><br><span class="line">            <span class="comment">// 递归</span></span><br><span class="line">            copyObj[key] = deepCopy(obj[key]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            copyObj[key] = obj[key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> copyObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="lodash常用方法"><a href="#lodash常用方法" class="headerlink" title="lodash常用方法"></a>lodash常用方法</h3> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 过滤数组</span></span><br><span class="line">_.uniq([<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]); <span class="comment">// [1, 2, 3]</span></span><br><span class="line">_.uniqBy([&#123; age: <span class="number">10</span> &#125;, &#123; age: <span class="number">11</span> &#125;, &#123; age: <span class="number">10</span> &#125;], <span class="string">'age'</span>);</span><br><span class="line"><span class="comment">// =&gt; [&#123; age: 10 &#125;, &#123; age: 11 &#125;]</span></span><br><span class="line">_.uniqBy([&#123; name: <span class="string">'joe'</span>, age: <span class="string">'10'</span>&#125;, &#123; name: <span class="string">'tome'</span>, age: <span class="string">'11'</span>&#125;, &#123; name: <span class="string">'joe'</span>, age: <span class="string">'10'</span>&#125;], _.isEqual);</span><br><span class="line"><span class="comment">// =&gt; [&#123; name: 'joe', age: '10'&#125;, &#123; name: 'tome', age: '11'&#125;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取随机数</span></span><br><span class="line">_.random(<span class="number">0</span>, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 深度比较，非内存地址比较</span></span><br><span class="line">_.isEqual(&#123; a:<span class="number">1</span> &#125;, &#123; a:<span class="number">1</span> &#125;);    <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">_.isNil()   <span class="comment">// null or undefined</span></span><br><span class="line"></span><br><span class="line">_.cloneDeep()   <span class="comment">// 深拷贝</span></span><br><span class="line">_.clone()   <span class="comment">// 浅拷贝</span></span><br><span class="line"></span><br><span class="line">_.find()    <span class="comment">// 找到数组中符合条件的对象</span></span><br><span class="line"></span><br><span class="line">_.flatten()     <span class="comment">// 数组扁平化，降维一层</span></span><br><span class="line">_.flattenDeep()     <span class="comment">// 数组扁平化至一维</span></span><br></pre></td></tr></table></figure>
+<h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><pre><code>var arr = [1,2,3,3,3,3,4,5,5];
 var newArr = [...new Set(arr)];
-</code></pre><h3 id="对象数组去重"><a href="#对象数组去重" class="headerlink" title="对象数组去重"></a>对象数组去重</h3><pre><code>var source = [
-    { name: &apos;Tom&apos; },
-    { name: &apos;Jack&apos; },
-    { name: &apos;Tom&apos; },
-    { name: &apos;Sun&apos; },
-    { name: &apos;Jack&apos; },
-    { name: &apos;Tom&apos; }
-];
-var hash = {};
-var target = source.filter((item) =&gt; {
-    if (!hash[item.name]) {
-        hash[item.name] = item.name;
-        return item;
-    }
-});
-console.log(hash);
-// {Tom: &quot;Tom&quot;, Jack: &quot;Jack&quot;, Sun: &quot;Sun&quot;}
-console.log(target);
-// [{ name: &apos;Tom&apos; }, { name: &apos;Jack&apos; }, { name: &apos;Sun&apos; }]
-</code></pre><h3 id="一道面试题"><a href="#一道面试题" class="headerlink" title="一道面试题"></a>一道面试题</h3><pre><code>var a = { n: 1 };
-var b = a;
-a.x = a = { n: 2};
-// 重点在于. 的运算优先级大于赋值运算的优先级。 
-// 所以会先执行 `a.x`，相当于给a赋值一个属性x, a.x = undefined
-// 此时 a = { x: undefined, { n:1 }}, b = { x: undefined, { n:1 }}
-// 最后 a = { n: 2 }, b = { x: { n: 2 }, { n: 1} }
-</code></pre><h3 id="0-1-0-2-0-3"><a href="#0-1-0-2-0-3" class="headerlink" title="0.1 + 0.2 === 0.3"></a>0.1 + 0.2 === 0.3</h3><p>解决方法可以设置一个误差范围值，通常称为“机器精度”(machine epsilon)</p>
-<p>从es6开始，可以用Number.EPSILON去解决<br>es6之前版本写polyfill:</p>
-<pre><code>if (!Number.EPSILON) {
-    Number.EPSILON = Math.pow(2,-52);
-}
-function isNumberEqual(num1, num2) {
-    // Math.abs()返回一个绝对值
-    return Math.abs(num2 - num1) &lt; Number.EPSILON;
-}
-var a = 0.1 + 0.2;
-var b = 0.3;
-isNumberEqual(a, b);    // true
-a === b;    // false
-</code></pre><h3 id="React生命周期"><a href="#React生命周期" class="headerlink" title="React生命周期"></a>React生命周期</h3><blockquote>
+</code></pre><h3 id="对象数组去重"><a href="#对象数组去重" class="headerlink" title="对象数组去重"></a>对象数组去重</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> source = [</span><br><span class="line">    &#123; name: <span class="string">'Tom'</span> &#125;,</span><br><span class="line">    &#123; name: <span class="string">'Jack'</span> &#125;,</span><br><span class="line">    &#123; name: <span class="string">'Tom'</span> &#125;,</span><br><span class="line">    &#123; name: <span class="string">'Sun'</span> &#125;,</span><br><span class="line">    &#123; name: <span class="string">'Jack'</span> &#125;,</span><br><span class="line">    &#123; name: <span class="string">'Tom'</span> &#125;</span><br><span class="line">];</span><br><span class="line"><span class="keyword">var</span> hash = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> target = source.filter((item) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (!hash[item.name]) &#123;</span><br><span class="line">        hash[item.name] = item.name;</span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(hash);</span><br><span class="line"><span class="comment">// &#123;Tom: "Tom", Jack: "Jack", Sun: "Sun"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(target);</span><br><span class="line"><span class="comment">// [&#123; name: 'Tom' &#125;, &#123; name: 'Jack' &#125;, &#123; name: 'Sun' &#125;]</span></span><br></pre></td></tr></table></figure>
+<h3 id="一道面试题"><a href="#一道面试题" class="headerlink" title="一道面试题"></a>一道面试题</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123; n: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line">a.x = a = &#123; n: <span class="number">2</span>&#125;;</span><br><span class="line"><span class="comment">// 重点在于. 的运算优先级大于赋值运算的优先级。 </span></span><br><span class="line"><span class="comment">// 所以会先执行 `a.x`，相当于给a赋值一个属性x, a.x = undefined</span></span><br><span class="line"><span class="comment">// 此时 a = &#123; x: undefined, &#123; n:1 &#125;&#125;, b = &#123; x: undefined, &#123; n:1 &#125;&#125;</span></span><br><span class="line"><span class="comment">// 最后 a = &#123; n: 2 &#125;, b = &#123; x: &#123; n: 2 &#125;, &#123; n: 1&#125; &#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="0-1-0-2-0-3"><a href="#0-1-0-2-0-3" class="headerlink" title="0.1 + 0.2 === 0.3"></a>0.1 + 0.2 === 0.3</h3><p>解决方法可以设置一个误差范围值，通常称为“机器精度”(machine epsilon)</p>
+<p>从es6开始，可以用Number.EPSILON去解决<br>es6之前版本写polyfill:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Number</span>.EPSILON) &#123;</span><br><span class="line">    <span class="built_in">Number</span>.EPSILON = <span class="built_in">Math</span>.pow(<span class="number">2</span>,<span class="number">-52</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isNumberEqual</span>(<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Math.abs()返回一个绝对值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.abs(num2 - num1) &lt; <span class="built_in">Number</span>.EPSILON;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">0.1</span> + <span class="number">0.2</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">0.3</span>;</span><br><span class="line">isNumberEqual(a, b);    <span class="comment">// true</span></span><br><span class="line">a === b;    <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="React生命周期"><a href="#React生命周期" class="headerlink" title="React生命周期"></a>React生命周期</h3><blockquote>
 <p>start</p>
 <blockquote>
 <p>contructor</p>
@@ -120,26 +37,8 @@ a === b;    // false
 </blockquote>
 <h3 id="事件冒泡、捕获、委托"><a href="#事件冒泡、捕获、委托" class="headerlink" title="事件冒泡、捕获、委托"></a>事件冒泡、捕获、委托</h3><p><code>事件捕获&amp;冒泡：DOM事件流-Document到触发事件的那个节点一层层向下捕获直到事件源，然后再向上冒泡回到document。</code></p>
 <p><code>Tip：IE提出了事件冒泡，Netscape提出了事件捕获。</code></p>
-<p><code>事件委托：利用事件冒泡原理，把本应该添加到某个元素上的事件委托给他的父级，从而减少DOM交互。</code></p>
-<pre><code>&lt;div id=&quot;father&quot;&gt;
-    &lt;h5 id=&quot;child1&quot;&gt;hello&lt;/h5&gt;
-    &lt;h5 id=&quot;child2&quot;&gt;world&lt;/h5&gt;
-    &lt;h5&gt;lucky&lt;/h5&gt;
-&lt;/div&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    // 事件委托
-    var father = document.getElementById(&apos;father&apos;).
-    father.addEventListener(&apos;click&apos;, function(e){
-        var e = e || window.event;
-        if (e.target.nodeName.toLowerCase() == &apos;h5&apos;) {
-            alert(e.target.innerHTML);
-        }
-    });
-
-    // AddEventListener的第三个参数，默认为false（冒泡流）
-    // 如果更改成true，就定义事件为捕获流。
-&lt;/script&gt;
-</code></pre><h3 id="redux-saga"><a href="#redux-saga" class="headerlink" title="redux-saga"></a>redux-saga</h3><ul>
+<p><code>事件委托：利用事件冒泡原理，把本应该添加到某个元素上的事件委托给他的父级，从而减少DOM交互。</code><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h5</span> <span class="attr">id</span>=<span class="string">"child1"</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h5</span> <span class="attr">id</span>=<span class="string">"child2"</span>&gt;</span>world<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h5</span>&gt;</span>lucky<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">    <span class="comment">// 事件委托</span></span><br><span class="line">    <span class="keyword">var</span> father = <span class="built_in">document</span>.getElementById(<span class="string">'father'</span>).</span><br><span class="line">    father.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> e = e || <span class="built_in">window</span>.event;</span><br><span class="line">        <span class="keyword">if</span> (e.target.nodeName.toLowerCase() == <span class="string">'h5'</span>) &#123;</span><br><span class="line">            alert(e.target.innerHTML);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// AddEventListener的第三个参数，默认为false（冒泡流）</span></span><br><span class="line">    <span class="comment">// 如果更改成true，就定义事件为捕获流。</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="redux-saga"><a href="#redux-saga" class="headerlink" title="redux-saga"></a>redux-saga</h3><ul>
 <li>集中处理了所有异步操作，异步接口一幕了解</li>
 <li>action是普通对象，这跟redux同步的action一模一样</li>
 <li>通过effect, 方便异步接口测试</li>
@@ -215,4 +114,4 @@ d.） 上面三个场景的跨域数据传递</code></p>
 <li>display的值是inline-block、table-cell、flex、table-caption或者inline-flex</li>
 <li>overflow的值不是visible</li>
 </ol>
-</div></article></div></section><footer><div class="paginator"><a href="/2017/02/14/js-Regexp/" class="next">下一篇</a></div><div class="copyright"><p>© 2016 - 2019 <a href="https://miaojihui.github.io">Joseph Miao</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+</div></article></div></section><footer><div class="paginator"><a href="/2017/02/14/js-Regexp/" class="next">NEXT</a></div><div class="copyright"><p>© 2016 - 2019 <a href="https://miaojihui.github.io">Joseph Miao</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
