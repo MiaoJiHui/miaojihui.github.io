@@ -1,0 +1,218 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 前端面试笔记 · MiaoJiHui</title><meta name="description" content="前端面试笔记 - Joseph Miao"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/xly.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/xly.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/miaojihui" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="https://twitter.com/miaojihui93" target="_blank" class="nav-list-link">TWITTER</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">前端面试笔记</h1><div class="post-info">Apr 1, 2019</div><div class="post-content"><h3 id="let的一个知识点"><a href="#let的一个知识点" class="headerlink" title="let的一个知识点"></a>let的一个知识点</h3><p><code>只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。在代码块中，使用let命令声明变量之前，该变量都是不可用的，这在语法上称为“暂时性死亡”</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 因为setTimeout是异步函数，所以会延后执行。循环会先走完，所以i是10</span></span><br><span class="line"><span class="comment">// var中的i其实是全局的,所以console.log打印的是最后变成10的全局变量</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">     setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">     &#125;, <span class="number">1000</span>)</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">// A方法中的i，每一次循环都是let下的一个块作用域变量，能够记住i并保存到内存中</span></span><br><span class="line"> <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">     setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">     &#125;, <span class="number">1000</span>)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Object-keys-和Reflect-ownKeys-的区别"><a href="#Object-keys-和Reflect-ownKeys-的区别" class="headerlink" title="Object.keys()和Reflect.ownKeys()的区别"></a>Object.keys()和Reflect.ownKeys()的区别</h3><p><code>Object.keys()</code> 返回自己的可枚举属性</p>
+<p><code>Reflect.ownKeys()</code> 返回所有的自己属性，不管可枚举还是不可枚举，所以可以遍历出方法属性</p>
+<h3 id="实现一个浅拷贝"><a href="#实现一个浅拷贝" class="headerlink" title="实现一个浅拷贝"></a>实现一个浅拷贝</h3><pre><code>// 浅拷贝
+function shallowCopy(obj) {
+    var copyObj = {}
+    for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            copyObj[key] = obj[key];
+        }
+    }
+    return copyObj;
+}
+</code></pre><h3 id="实现一个简易深拷贝"><a href="#实现一个简易深拷贝" class="headerlink" title="实现一个简易深拷贝"></a>实现一个简易深拷贝</h3><pre><code>// 判断是否为对象，保留是数组的情况。typeof [] === &apos;object&apos;
+function isObject(obj) {
+    return typeof obj === &apos;object&apos; &amp;&amp; object != null;
+}
+// 简易深拷贝
+function deepCopy(obj) {
+    // 如果非对象则返回该值
+    if (!isObject(obj)) return obj;
+    var copyObj = Array.isArray(obj) ? [] : {};
+    for (var key in obj) {
+        if (isObject(obj[key]) {
+            // 递归
+            copyObj[key] = deepCopy(obj[key]);
+        } else {
+            copyObj[key] = obj[key];
+        }
+    }
+    return copyObj;
+}
+</code></pre><h3 id="lodash常用方法"><a href="#lodash常用方法" class="headerlink" title="lodash常用方法"></a>lodash常用方法</h3><pre><code>// 过滤数组
+_.uniq([1, 1, 2, 3]); // [1, 2, 3]
+_.uniqBy([{ age: 10 }, { age: 11 }, { age: 10 }], &apos;age&apos;);
+// =&gt; [{ age: 10 }, { age: 11 }]
+_.uniqBy([{ name: &apos;joe&apos;, age: &apos;10&apos;}, { name: &apos;tome&apos;, age: &apos;11&apos;}, { name: &apos;joe&apos;, age: &apos;10&apos;}], _.isEqual);
+// =&gt; [{ name: &apos;joe&apos;, age: &apos;10&apos;}, { name: &apos;tome&apos;, age: &apos;11&apos;}]
+
+// 获取随机数
+_.random(0, 10)
+
+// 深度比较，非内存地址比较
+_.isEqual({ a:1 }, { a:1 });    // true
+
+_.isNil()   // null or undefined
+
+_.cloneDeep()   // 深拷贝
+_.clone()   // 浅拷贝
+
+_.find()    // 找到数组中符合条件的对象
+
+_.flatten()     // 数组扁平化，降维一层
+_.flattenDeep()     // 数组扁平化至一维  
+</code></pre><h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><pre><code>var arr = [1,2,3,3,3,3,4,5,5];
+var newArr = [...new Set(arr)];
+</code></pre><h3 id="对象数组去重"><a href="#对象数组去重" class="headerlink" title="对象数组去重"></a>对象数组去重</h3><pre><code>var source = [
+    { name: &apos;Tom&apos; },
+    { name: &apos;Jack&apos; },
+    { name: &apos;Tom&apos; },
+    { name: &apos;Sun&apos; },
+    { name: &apos;Jack&apos; },
+    { name: &apos;Tom&apos; }
+];
+var hash = {};
+var target = source.filter((item) =&gt; {
+    if (!hash[item.name]) {
+        hash[item.name] = item.name;
+        return item;
+    }
+});
+console.log(hash);
+// {Tom: &quot;Tom&quot;, Jack: &quot;Jack&quot;, Sun: &quot;Sun&quot;}
+console.log(target);
+// [{ name: &apos;Tom&apos; }, { name: &apos;Jack&apos; }, { name: &apos;Sun&apos; }]
+</code></pre><h3 id="一道面试题"><a href="#一道面试题" class="headerlink" title="一道面试题"></a>一道面试题</h3><pre><code>var a = { n: 1 };
+var b = a;
+a.x = a = { n: 2};
+// 重点在于. 的运算优先级大于赋值运算的优先级。 
+// 所以会先执行 `a.x`，相当于给a赋值一个属性x, a.x = undefined
+// 此时 a = { x: undefined, { n:1 }}, b = { x: undefined, { n:1 }}
+// 最后 a = { n: 2 }, b = { x: { n: 2 }, { n: 1} }
+</code></pre><h3 id="0-1-0-2-0-3"><a href="#0-1-0-2-0-3" class="headerlink" title="0.1 + 0.2 === 0.3"></a>0.1 + 0.2 === 0.3</h3><p>解决方法可以设置一个误差范围值，通常称为“机器精度”(machine epsilon)</p>
+<p>从es6开始，可以用Number.EPSILON去解决<br>es6之前版本写polyfill:</p>
+<pre><code>if (!Number.EPSILON) {
+    Number.EPSILON = Math.pow(2,-52);
+}
+function isNumberEqual(num1, num2) {
+    // Math.abs()返回一个绝对值
+    return Math.abs(num2 - num1) &lt; Number.EPSILON;
+}
+var a = 0.1 + 0.2;
+var b = 0.3;
+isNumberEqual(a, b);    // true
+a === b;    // false
+</code></pre><h3 id="React生命周期"><a href="#React生命周期" class="headerlink" title="React生命周期"></a>React生命周期</h3><blockquote>
+<p>start</p>
+<blockquote>
+<p>contructor</p>
+<blockquote>
+<p>static getDerivedStateFromProps</p>
+<blockquote>
+<p>componentWillMount</p>
+<blockquote>
+<p>render</p>
+<blockquote>
+<p>componentDidMount</p>
+<blockquote>
+<p>runtime</p>
+<blockquote>
+<p>componentWillUnmount</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="事件冒泡、捕获、委托"><a href="#事件冒泡、捕获、委托" class="headerlink" title="事件冒泡、捕获、委托"></a>事件冒泡、捕获、委托</h3><p><code>事件捕获&amp;冒泡：DOM事件流-Document到触发事件的那个节点一层层向下捕获直到事件源，然后再向上冒泡回到document。</code></p>
+<p><code>Tip：IE提出了事件冒泡，Netscape提出了事件捕获。</code></p>
+<p><code>事件委托：利用事件冒泡原理，把本应该添加到某个元素上的事件委托给他的父级，从而减少DOM交互。</code></p>
+<pre><code>&lt;div id=&quot;father&quot;&gt;
+    &lt;h5 id=&quot;child1&quot;&gt;hello&lt;/h5&gt;
+    &lt;h5 id=&quot;child2&quot;&gt;world&lt;/h5&gt;
+    &lt;h5&gt;lucky&lt;/h5&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    // 事件委托
+    var father = document.getElementById(&apos;father&apos;).
+    father.addEventListener(&apos;click&apos;, function(e){
+        var e = e || window.event;
+        if (e.target.nodeName.toLowerCase() == &apos;h5&apos;) {
+            alert(e.target.innerHTML);
+        }
+    });
+
+    // AddEventListener的第三个参数，默认为false（冒泡流）
+    // 如果更改成true，就定义事件为捕获流。
+&lt;/script&gt;
+</code></pre><h3 id="redux-saga"><a href="#redux-saga" class="headerlink" title="redux-saga"></a>redux-saga</h3><ul>
+<li>集中处理了所有异步操作，异步接口一幕了解</li>
+<li>action是普通对象，这跟redux同步的action一模一样</li>
+<li>通过effect, 方便异步接口测试</li>
+<li>通过worker和watcher可以实现非阻塞异步调用，并且同时可以实现非阻塞调用下的事件监听</li>
+<li>异步操作流程是可以控制的，可以随时取消异步操作</li>
+</ul>
+<h2 id="优化网页性能"><a href="#优化网页性能" class="headerlink" title="优化网页性能"></a>优化网页性能</h2><h3 id="gzip"><a href="#gzip" class="headerlink" title="gzip"></a>gzip</h3><p><code>减小服务器返回文件的大小，让浏览器本地解压缩 再渲染html, 但需注意下cpu损耗的问题</code></p>
+<ul>
+<li>浏览器需发送一个请求头，request header里设置Accept-Encoding: gzip</li>
+<li>如果服务器压缩了文件，会返回Content-Encoding: gzip</li>
+</ul>
+<h4 id="适当引入图片转base64"><a href="#适当引入图片转base64" class="headerlink" title="适当引入图片转base64"></a>适当引入图片转base64</h4><p><code>减少了一次Http请求数，但是Css的体积也会随之增大一些，适用于极小或者极简单（背景图）。可以当成本地图片，重复使用不会重复请求。没有跨域问题，无需考虑缓存。可以被gzip。</code></p>
+<h4 id="js文件位置"><a href="#js文件位置" class="headerlink" title="js文件位置"></a>js文件位置</h4><p><code>放在&lt;/body&gt;前, 防止浏览器下载并执行js文件，阻塞了html和css的渲染。或者在&lt;script&gt;中加入defer参数，延迟下载该js文件直到html渲染完成。加入async参数可以让浏览器异步下载js，不影响html的渲染</code></p>
+<h4 id="减少请求数"><a href="#减少请求数" class="headerlink" title="减少请求数"></a>减少请求数</h4><ul>
+<li>js/css压缩合并</li>
+<li>雪碧图</li>
+<li>图片懒加载</li>
+<li>使用Svg图</li>
+</ul>
+<h4 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h4><p>选择优秀的CDN服务，可以适当提高网页速度</p>
+<h4 id="设置http-header"><a href="#设置http-header" class="headerlink" title="设置http header"></a>设置http header</h4><p><code>request header中设置 Cache-Control: max-age=123456000</code></p>
+<h4 id="尽量使用ajax-get"><a href="#尽量使用ajax-get" class="headerlink" title="尽量使用ajax get"></a>尽量使用ajax get</h4><p><code>在进行ajax请求时，尽量选择get方法，这样可以使用客户端缓存，提高请求速度</code></p>
+<h2 id="前端跨域解决方案"><a href="#前端跨域解决方案" class="headerlink" title="前端跨域解决方案"></a>前端跨域解决方案</h2><h3 id="1-jsonp"><a href="#1-jsonp" class="headerlink" title="1. jsonp"></a>1. jsonp</h3><p><code>https://www.kuayu.com/admin?name=joe&amp;callback=myCall 只适合简单跨域解决，只能用get请求方式，并且需要后端配合返回callback()</code></p>
+<pre><code>// 服务端需给回调函数返参
+function myCall(res) {
+    // do some render function 
+    console.log(res);
+}
+</code></pre><h4 id="2-iframe相关"><a href="#2-iframe相关" class="headerlink" title="2. iframe相关"></a>2. iframe相关</h4><h4 id="3-nginx代理跨域"><a href="#3-nginx代理跨域" class="headerlink" title="3. nginx代理跨域"></a>3. nginx代理跨域</h4><p><code>跨域原理： 同源策略是浏览器的安全策略，不是HTTP协议的一部分。服务器端调用HTTP接口只是使用HTTP协议，不会执行JS脚本，不需要同源策略，也就不存在跨越问题。</code></p>
+<p><code>实现思路：通过nginx配置一个代理服务器（域名与domain1相同，端口不同）做跳板机，反向代理访问domain2接口，并且可以顺便修改cookie中domain信息，方便当前域cookie写入，实现跨域登录。</code></p>
+<p>nginx具体配置：</p>
+<pre><code>#proxy服务器
+server {
+    listen       81;
+    server_name  www.domain1.com;
+
+    location / {
+        proxy_pass   http://www.domain2.com:8080;  #反向代理
+        proxy_cookie_domain www.domain2.com www.domain1.com; #修改cookie里域名
+        index  index.html index.htm;
+
+        # 当用webpack-dev-server等中间件代理接口访问nignx时，此时无浏览器参与，故没有同源限制，下面的跨域配置可不启用
+        add_header Access-Control-Allow-Origin http://www.domain1.com;  #当前端只跨域不带cookie时，可为*
+        add_header Access-Control-Allow-Credentials true;
+    }
+}
+</code></pre><p>前端代码示例：</p>
+<pre><code>var xhr = new XMLHttpRequest();
+
+// 前端开关：浏览器是否读写cookie
+xhr.withCredentials = true;
+
+// 访问nginx中的代理服务器
+xhr.open(&apos;get&apos;, &apos;http://www.domain1.com:81/?user=admin&apos;, true);
+xhr.send();
+</code></pre><h4 id="4-Nodejs中间件代理"><a href="#4-Nodejs中间件代理" class="headerlink" title="4. Nodejs中间件代理"></a>4. Nodejs中间件代理</h4><p><code>node中间件实现跨域代理，原理大致与nginx相同，都是通过启一个代理服务器，实现数据的转发，也可以通过设置cookieDomainRewrite参数修改响应头中cookie中域名，实现当前域的cookie写入，方便接口登录认证。</code></p>
+<h4 id="5-WebSocket协议跨域"><a href="#5-WebSocket协议跨域" class="headerlink" title="5. WebSocket协议跨域"></a>5. WebSocket协议跨域</h4><p><code>WebSocket protocol是HTML5一种新的协议。它实现了浏览器与服务器全双工通信，同时允许跨域通讯，是server push技术的一种很好的实现。
+原生WebSocket API使用起来不太方便，我们使用Socket.io，它很好地封装了webSocket接口，提供了更简单、灵活的接口，也对不支持webSocket的浏览器提供了向下兼容。</code></p>
+<h4 id="6-跨域资源共享（CORS）"><a href="#6-跨域资源共享（CORS）" class="headerlink" title="6. 跨域资源共享（CORS）"></a>6. 跨域资源共享（CORS）</h4><p><code>普通跨域请求：只服务端设置Access-Control-Allow-Origin即可，前端无须设置，若要带cookie请求：前后端都需要设置。</code></p>
+<h4 id="7-postMessage跨域"><a href="#7-postMessage跨域" class="headerlink" title="7. postMessage跨域"></a>7. postMessage跨域</h4><p><code>postMessage是HTML5 XMLHttpRequest Level 2中的API，且是为数不多可以跨域操作的window属性之一，它可用于解决以下方面的问题：
+a.） 页面和其打开的新窗口的数据传递
+b.） 多窗口之间消息传递
+c.） 页面与嵌套的iframe消息传递
+d.） 上面三个场景的跨域数据传递</code></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>简单的跨域请求jsonp即可，复杂的cors，窗口之间JS跨域postMessage，开发环境下接口跨域用nginx反向代理或node中间件比较方便</p>
+<h3 id="http缓存"><a href="#http缓存" class="headerlink" title="http缓存"></a>http缓存</h3><p>缓存的开关：<code>cache-control, pragma =&gt;{ pragma, Expires } (过时)</code></p>
+<p>缓存校验：<code>Last-Modified, Expires: GMT时间， etag （根据类似md5算法对服务器中的资源进行计算出值，然后作对比）</code></p>
+<h1 id="CSS"><a href="#CSS" class="headerlink" title="#CSS"></a>#CSS</h1><h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h3><p><code>BFC: Block Fromatting Context 块级格式上下文</code></p>
+<p>触发方式</p>
+<ol>
+<li>float的值不是none。</li>
+<li>position的值不是static或者relative。</li>
+<li>display的值是inline-block、table-cell、flex、table-caption或者inline-flex</li>
+<li>overflow的值不是visible</li>
+</ol>
+</div></article></div></section><footer><div class="paginator"><a href="/2017/02/14/js-Regexp/" class="next">下一篇</a></div><div class="copyright"><p>© 2016 - 2019 <a href="https://miaojihui.github.io">Joseph Miao</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>

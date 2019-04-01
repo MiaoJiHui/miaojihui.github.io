@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://miaojihui.github.io/"/>
-  <updated>2017-04-01T08:30:43.000Z</updated>
+  <updated>2019-04-01T06:36:57.000Z</updated>
   <id>https://miaojihui.github.io/</id>
   
   <author>
@@ -14,6 +14,241 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端面试笔记</title>
+    <link href="https://miaojihui.github.io/2019/04/01/FE-interview-book/"/>
+    <id>https://miaojihui.github.io/2019/04/01/FE-interview-book/</id>
+    <published>2019-04-01T06:36:35.000Z</published>
+    <updated>2019-04-01T06:36:57.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;let的一个知识点&quot;&gt;&lt;a href=&quot;#let的一个知识点&quot; class=&quot;headerlink&quot; title=&quot;let的一个知识点&quot;&gt;&lt;/a&gt;let的一个知识点&lt;/h3&gt;&lt;p&gt;&lt;code&gt;只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。在代码块中，使用let命令声明变量之前，该变量都是不可用的，这在语法上称为“暂时性死亡”&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 因为setTimeout是异步函数，所以会延后执行。循环会先走完，所以i是10&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// var中的i其实是全局的,所以console.log打印的是最后变成10的全局变量&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;; i++) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     setTimeout(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(i)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &amp;#125;, &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;comment&quot;&gt;// A方法中的i，每一次循环都是let下的一个块作用域变量，能够记住i并保存到内存中&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;; i++) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     setTimeout(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;A&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(i);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &amp;#125;, &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Object-keys-和Reflect-ownKeys-的区别&quot;&gt;&lt;a href=&quot;#Object-keys-和Reflect-ownKeys-的区别&quot; class=&quot;headerlink&quot; title=&quot;Object.keys()和Reflect.ownKeys()的区别&quot;&gt;&lt;/a&gt;Object.keys()和Reflect.ownKeys()的区别&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Object.keys()&lt;/code&gt; 返回自己的可枚举属性&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Reflect.ownKeys()&lt;/code&gt; 返回所有的自己属性，不管可枚举还是不可枚举，所以可以遍历出方法属性&lt;/p&gt;
+&lt;h3 id=&quot;实现一个浅拷贝&quot;&gt;&lt;a href=&quot;#实现一个浅拷贝&quot; class=&quot;headerlink&quot; title=&quot;实现一个浅拷贝&quot;&gt;&lt;/a&gt;实现一个浅拷贝&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;// 浅拷贝
+function shallowCopy(obj) {
+    var copyObj = {}
+    for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            copyObj[key] = obj[key];
+        }
+    }
+    return copyObj;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;实现一个简易深拷贝&quot;&gt;&lt;a href=&quot;#实现一个简易深拷贝&quot; class=&quot;headerlink&quot; title=&quot;实现一个简易深拷贝&quot;&gt;&lt;/a&gt;实现一个简易深拷贝&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;// 判断是否为对象，保留是数组的情况。typeof [] === &amp;apos;object&amp;apos;
+function isObject(obj) {
+    return typeof obj === &amp;apos;object&amp;apos; &amp;amp;&amp;amp; object != null;
+}
+// 简易深拷贝
+function deepCopy(obj) {
+    // 如果非对象则返回该值
+    if (!isObject(obj)) return obj;
+    var copyObj = Array.isArray(obj) ? [] : {};
+    for (var key in obj) {
+        if (isObject(obj[key]) {
+            // 递归
+            copyObj[key] = deepCopy(obj[key]);
+        } else {
+            copyObj[key] = obj[key];
+        }
+    }
+    return copyObj;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;lodash常用方法&quot;&gt;&lt;a href=&quot;#lodash常用方法&quot; class=&quot;headerlink&quot; title=&quot;lodash常用方法&quot;&gt;&lt;/a&gt;lodash常用方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;// 过滤数组
+_.uniq([1, 1, 2, 3]); // [1, 2, 3]
+_.uniqBy([{ age: 10 }, { age: 11 }, { age: 10 }], &amp;apos;age&amp;apos;);
+// =&amp;gt; [{ age: 10 }, { age: 11 }]
+_.uniqBy([{ name: &amp;apos;joe&amp;apos;, age: &amp;apos;10&amp;apos;}, { name: &amp;apos;tome&amp;apos;, age: &amp;apos;11&amp;apos;}, { name: &amp;apos;joe&amp;apos;, age: &amp;apos;10&amp;apos;}], _.isEqual);
+// =&amp;gt; [{ name: &amp;apos;joe&amp;apos;, age: &amp;apos;10&amp;apos;}, { name: &amp;apos;tome&amp;apos;, age: &amp;apos;11&amp;apos;}]
+
+// 获取随机数
+_.random(0, 10)
+
+// 深度比较，非内存地址比较
+_.isEqual({ a:1 }, { a:1 });    // true
+
+_.isNil()   // null or undefined
+
+_.cloneDeep()   // 深拷贝
+_.clone()   // 浅拷贝
+
+_.find()    // 找到数组中符合条件的对象
+
+_.flatten()     // 数组扁平化，降维一层
+_.flattenDeep()     // 数组扁平化至一维  
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;数组去重&quot;&gt;&lt;a href=&quot;#数组去重&quot; class=&quot;headerlink&quot; title=&quot;数组去重&quot;&gt;&lt;/a&gt;数组去重&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var arr = [1,2,3,3,3,3,4,5,5];
+var newArr = [...new Set(arr)];
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;对象数组去重&quot;&gt;&lt;a href=&quot;#对象数组去重&quot; class=&quot;headerlink&quot; title=&quot;对象数组去重&quot;&gt;&lt;/a&gt;对象数组去重&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var source = [
+    { name: &amp;apos;Tom&amp;apos; },
+    { name: &amp;apos;Jack&amp;apos; },
+    { name: &amp;apos;Tom&amp;apos; },
+    { name: &amp;apos;Sun&amp;apos; },
+    { name: &amp;apos;Jack&amp;apos; },
+    { name: &amp;apos;Tom&amp;apos; }
+];
+var hash = {};
+var target = source.filter((item) =&amp;gt; {
+    if (!hash[item.name]) {
+        hash[item.name] = item.name;
+        return item;
+    }
+});
+console.log(hash);
+// {Tom: &amp;quot;Tom&amp;quot;, Jack: &amp;quot;Jack&amp;quot;, Sun: &amp;quot;Sun&amp;quot;}
+console.log(target);
+// [{ name: &amp;apos;Tom&amp;apos; }, { name: &amp;apos;Jack&amp;apos; }, { name: &amp;apos;Sun&amp;apos; }]
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;一道面试题&quot;&gt;&lt;a href=&quot;#一道面试题&quot; class=&quot;headerlink&quot; title=&quot;一道面试题&quot;&gt;&lt;/a&gt;一道面试题&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var a = { n: 1 };
+var b = a;
+a.x = a = { n: 2};
+// 重点在于. 的运算优先级大于赋值运算的优先级。 
+// 所以会先执行 `a.x`，相当于给a赋值一个属性x, a.x = undefined
+// 此时 a = { x: undefined, { n:1 }}, b = { x: undefined, { n:1 }}
+// 最后 a = { n: 2 }, b = { x: { n: 2 }, { n: 1} }
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;0-1-0-2-0-3&quot;&gt;&lt;a href=&quot;#0-1-0-2-0-3&quot; class=&quot;headerlink&quot; title=&quot;0.1 + 0.2 === 0.3&quot;&gt;&lt;/a&gt;0.1 + 0.2 === 0.3&lt;/h3&gt;&lt;p&gt;解决方法可以设置一个误差范围值，通常称为“机器精度”(machine epsilon)&lt;/p&gt;
+&lt;p&gt;从es6开始，可以用Number.EPSILON去解决&lt;br&gt;es6之前版本写polyfill:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (!Number.EPSILON) {
+    Number.EPSILON = Math.pow(2,-52);
+}
+function isNumberEqual(num1, num2) {
+    // Math.abs()返回一个绝对值
+    return Math.abs(num2 - num1) &amp;lt; Number.EPSILON;
+}
+var a = 0.1 + 0.2;
+var b = 0.3;
+isNumberEqual(a, b);    // true
+a === b;    // false
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;React生命周期&quot;&gt;&lt;a href=&quot;#React生命周期&quot; class=&quot;headerlink&quot; title=&quot;React生命周期&quot;&gt;&lt;/a&gt;React生命周期&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;start&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;contructor&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;static getDerivedStateFromProps&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;componentWillMount&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;render&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;componentDidMount&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;runtime&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;componentWillUnmount&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;事件冒泡、捕获、委托&quot;&gt;&lt;a href=&quot;#事件冒泡、捕获、委托&quot; class=&quot;headerlink&quot; title=&quot;事件冒泡、捕获、委托&quot;&gt;&lt;/a&gt;事件冒泡、捕获、委托&lt;/h3&gt;&lt;p&gt;&lt;code&gt;事件捕获&amp;amp;冒泡：DOM事件流-Document到触发事件的那个节点一层层向下捕获直到事件源，然后再向上冒泡回到document。&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Tip：IE提出了事件冒泡，Netscape提出了事件捕获。&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;事件委托：利用事件冒泡原理，把本应该添加到某个元素上的事件委托给他的父级，从而减少DOM交互。&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div id=&amp;quot;father&amp;quot;&amp;gt;
+    &amp;lt;h5 id=&amp;quot;child1&amp;quot;&amp;gt;hello&amp;lt;/h5&amp;gt;
+    &amp;lt;h5 id=&amp;quot;child2&amp;quot;&amp;gt;world&amp;lt;/h5&amp;gt;
+    &amp;lt;h5&amp;gt;lucky&amp;lt;/h5&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+    // 事件委托
+    var father = document.getElementById(&amp;apos;father&amp;apos;).
+    father.addEventListener(&amp;apos;click&amp;apos;, function(e){
+        var e = e || window.event;
+        if (e.target.nodeName.toLowerCase() == &amp;apos;h5&amp;apos;) {
+            alert(e.target.innerHTML);
+        }
+    });
+
+    // AddEventListener的第三个参数，默认为false（冒泡流）
+    // 如果更改成true，就定义事件为捕获流。
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;redux-saga&quot;&gt;&lt;a href=&quot;#redux-saga&quot; class=&quot;headerlink&quot; title=&quot;redux-saga&quot;&gt;&lt;/a&gt;redux-saga&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;集中处理了所有异步操作，异步接口一幕了解&lt;/li&gt;
+&lt;li&gt;action是普通对象，这跟redux同步的action一模一样&lt;/li&gt;
+&lt;li&gt;通过effect, 方便异步接口测试&lt;/li&gt;
+&lt;li&gt;通过worker和watcher可以实现非阻塞异步调用，并且同时可以实现非阻塞调用下的事件监听&lt;/li&gt;
+&lt;li&gt;异步操作流程是可以控制的，可以随时取消异步操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;优化网页性能&quot;&gt;&lt;a href=&quot;#优化网页性能&quot; class=&quot;headerlink&quot; title=&quot;优化网页性能&quot;&gt;&lt;/a&gt;优化网页性能&lt;/h2&gt;&lt;h3 id=&quot;gzip&quot;&gt;&lt;a href=&quot;#gzip&quot; class=&quot;headerlink&quot; title=&quot;gzip&quot;&gt;&lt;/a&gt;gzip&lt;/h3&gt;&lt;p&gt;&lt;code&gt;减小服务器返回文件的大小，让浏览器本地解压缩 再渲染html, 但需注意下cpu损耗的问题&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;浏览器需发送一个请求头，request header里设置Accept-Encoding: gzip&lt;/li&gt;
+&lt;li&gt;如果服务器压缩了文件，会返回Content-Encoding: gzip&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;适当引入图片转base64&quot;&gt;&lt;a href=&quot;#适当引入图片转base64&quot; class=&quot;headerlink&quot; title=&quot;适当引入图片转base64&quot;&gt;&lt;/a&gt;适当引入图片转base64&lt;/h4&gt;&lt;p&gt;&lt;code&gt;减少了一次Http请求数，但是Css的体积也会随之增大一些，适用于极小或者极简单（背景图）。可以当成本地图片，重复使用不会重复请求。没有跨域问题，无需考虑缓存。可以被gzip。&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;js文件位置&quot;&gt;&lt;a href=&quot;#js文件位置&quot; class=&quot;headerlink&quot; title=&quot;js文件位置&quot;&gt;&lt;/a&gt;js文件位置&lt;/h4&gt;&lt;p&gt;&lt;code&gt;放在&amp;lt;/body&amp;gt;前, 防止浏览器下载并执行js文件，阻塞了html和css的渲染。或者在&amp;lt;script&amp;gt;中加入defer参数，延迟下载该js文件直到html渲染完成。加入async参数可以让浏览器异步下载js，不影响html的渲染&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;减少请求数&quot;&gt;&lt;a href=&quot;#减少请求数&quot; class=&quot;headerlink&quot; title=&quot;减少请求数&quot;&gt;&lt;/a&gt;减少请求数&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;js/css压缩合并&lt;/li&gt;
+&lt;li&gt;雪碧图&lt;/li&gt;
+&lt;li&gt;图片懒加载&lt;/li&gt;
+&lt;li&gt;使用Svg图&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;CDN&quot;&gt;&lt;a href=&quot;#CDN&quot; class=&quot;headerlink&quot; title=&quot;CDN&quot;&gt;&lt;/a&gt;CDN&lt;/h4&gt;&lt;p&gt;选择优秀的CDN服务，可以适当提高网页速度&lt;/p&gt;
+&lt;h4 id=&quot;设置http-header&quot;&gt;&lt;a href=&quot;#设置http-header&quot; class=&quot;headerlink&quot; title=&quot;设置http header&quot;&gt;&lt;/a&gt;设置http header&lt;/h4&gt;&lt;p&gt;&lt;code&gt;request header中设置 Cache-Control: max-age=123456000&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;尽量使用ajax-get&quot;&gt;&lt;a href=&quot;#尽量使用ajax-get&quot; class=&quot;headerlink&quot; title=&quot;尽量使用ajax get&quot;&gt;&lt;/a&gt;尽量使用ajax get&lt;/h4&gt;&lt;p&gt;&lt;code&gt;在进行ajax请求时，尽量选择get方法，这样可以使用客户端缓存，提高请求速度&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前端跨域解决方案&quot;&gt;&lt;a href=&quot;#前端跨域解决方案&quot; class=&quot;headerlink&quot; title=&quot;前端跨域解决方案&quot;&gt;&lt;/a&gt;前端跨域解决方案&lt;/h2&gt;&lt;h3 id=&quot;1-jsonp&quot;&gt;&lt;a href=&quot;#1-jsonp&quot; class=&quot;headerlink&quot; title=&quot;1. jsonp&quot;&gt;&lt;/a&gt;1. jsonp&lt;/h3&gt;&lt;p&gt;&lt;code&gt;https://www.kuayu.com/admin?name=joe&amp;amp;callback=myCall 只适合简单跨域解决，只能用get请求方式，并且需要后端配合返回callback()&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 服务端需给回调函数返参
+function myCall(res) {
+    // do some render function 
+    console.log(res);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;2-iframe相关&quot;&gt;&lt;a href=&quot;#2-iframe相关&quot; class=&quot;headerlink&quot; title=&quot;2. iframe相关&quot;&gt;&lt;/a&gt;2. iframe相关&lt;/h4&gt;&lt;h4 id=&quot;3-nginx代理跨域&quot;&gt;&lt;a href=&quot;#3-nginx代理跨域&quot; class=&quot;headerlink&quot; title=&quot;3. nginx代理跨域&quot;&gt;&lt;/a&gt;3. nginx代理跨域&lt;/h4&gt;&lt;p&gt;&lt;code&gt;跨域原理： 同源策略是浏览器的安全策略，不是HTTP协议的一部分。服务器端调用HTTP接口只是使用HTTP协议，不会执行JS脚本，不需要同源策略，也就不存在跨越问题。&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;实现思路：通过nginx配置一个代理服务器（域名与domain1相同，端口不同）做跳板机，反向代理访问domain2接口，并且可以顺便修改cookie中domain信息，方便当前域cookie写入，实现跨域登录。&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;nginx具体配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#proxy服务器
+server {
+    listen       81;
+    server_name  www.domain1.com;
+
+    location / {
+        proxy_pass   http://www.domain2.com:8080;  #反向代理
+        proxy_cookie_domain www.domain2.com www.domain1.com; #修改cookie里域名
+        index  index.html index.htm;
+
+        # 当用webpack-dev-server等中间件代理接口访问nignx时，此时无浏览器参与，故没有同源限制，下面的跨域配置可不启用
+        add_header Access-Control-Allow-Origin http://www.domain1.com;  #当前端只跨域不带cookie时，可为*
+        add_header Access-Control-Allow-Credentials true;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;前端代码示例：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var xhr = new XMLHttpRequest();
+
+// 前端开关：浏览器是否读写cookie
+xhr.withCredentials = true;
+
+// 访问nginx中的代理服务器
+xhr.open(&amp;apos;get&amp;apos;, &amp;apos;http://www.domain1.com:81/?user=admin&amp;apos;, true);
+xhr.send();
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;4-Nodejs中间件代理&quot;&gt;&lt;a href=&quot;#4-Nodejs中间件代理&quot; class=&quot;headerlink&quot; title=&quot;4. Nodejs中间件代理&quot;&gt;&lt;/a&gt;4. Nodejs中间件代理&lt;/h4&gt;&lt;p&gt;&lt;code&gt;node中间件实现跨域代理，原理大致与nginx相同，都是通过启一个代理服务器，实现数据的转发，也可以通过设置cookieDomainRewrite参数修改响应头中cookie中域名，实现当前域的cookie写入，方便接口登录认证。&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;5-WebSocket协议跨域&quot;&gt;&lt;a href=&quot;#5-WebSocket协议跨域&quot; class=&quot;headerlink&quot; title=&quot;5. WebSocket协议跨域&quot;&gt;&lt;/a&gt;5. WebSocket协议跨域&lt;/h4&gt;&lt;p&gt;&lt;code&gt;WebSocket protocol是HTML5一种新的协议。它实现了浏览器与服务器全双工通信，同时允许跨域通讯，是server push技术的一种很好的实现。
+原生WebSocket API使用起来不太方便，我们使用Socket.io，它很好地封装了webSocket接口，提供了更简单、灵活的接口，也对不支持webSocket的浏览器提供了向下兼容。&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;6-跨域资源共享（CORS）&quot;&gt;&lt;a href=&quot;#6-跨域资源共享（CORS）&quot; class=&quot;headerlink&quot; title=&quot;6. 跨域资源共享（CORS）&quot;&gt;&lt;/a&gt;6. 跨域资源共享（CORS）&lt;/h4&gt;&lt;p&gt;&lt;code&gt;普通跨域请求：只服务端设置Access-Control-Allow-Origin即可，前端无须设置，若要带cookie请求：前后端都需要设置。&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;7-postMessage跨域&quot;&gt;&lt;a href=&quot;#7-postMessage跨域&quot; class=&quot;headerlink&quot; title=&quot;7. postMessage跨域&quot;&gt;&lt;/a&gt;7. postMessage跨域&lt;/h4&gt;&lt;p&gt;&lt;code&gt;postMessage是HTML5 XMLHttpRequest Level 2中的API，且是为数不多可以跨域操作的window属性之一，它可用于解决以下方面的问题：
+a.） 页面和其打开的新窗口的数据传递
+b.） 多窗口之间消息传递
+c.） 页面与嵌套的iframe消息传递
+d.） 上面三个场景的跨域数据传递&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h4&gt;&lt;p&gt;简单的跨域请求jsonp即可，复杂的cors，窗口之间JS跨域postMessage，开发环境下接口跨域用nginx反向代理或node中间件比较方便&lt;/p&gt;
+&lt;h3 id=&quot;http缓存&quot;&gt;&lt;a href=&quot;#http缓存&quot; class=&quot;headerlink&quot; title=&quot;http缓存&quot;&gt;&lt;/a&gt;http缓存&lt;/h3&gt;&lt;p&gt;缓存的开关：&lt;code&gt;cache-control, pragma =&amp;gt;{ pragma, Expires } (过时)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;缓存校验：&lt;code&gt;Last-Modified, Expires: GMT时间， etag （根据类似md5算法对服务器中的资源进行计算出值，然后作对比）&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&quot;CSS&quot;&gt;&lt;a href=&quot;#CSS&quot; class=&quot;headerlink&quot; title=&quot;#CSS&quot;&gt;&lt;/a&gt;#CSS&lt;/h1&gt;&lt;h3 id=&quot;BFC&quot;&gt;&lt;a href=&quot;#BFC&quot; class=&quot;headerlink&quot; title=&quot;BFC&quot;&gt;&lt;/a&gt;BFC&lt;/h3&gt;&lt;p&gt;&lt;code&gt;BFC: Block Fromatting Context 块级格式上下文&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;触发方式&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;float的值不是none。&lt;/li&gt;
+&lt;li&gt;position的值不是static或者relative。&lt;/li&gt;
+&lt;li&gt;display的值是inline-block、table-cell、flex、table-caption或者inline-flex&lt;/li&gt;
+&lt;li&gt;overflow的值不是visible&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;let的一个知识点&quot;&gt;&lt;a href=&quot;#let的一个知识点&quot; class=&quot;headerlink&quot; title=&quot;let的一个知识点&quot;&gt;&lt;/a&gt;let的一个知识点&lt;/h3&gt;&lt;p&gt;&lt;code&gt;只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Javascript正则表达式小记</title>
